@@ -1,0 +1,27 @@
+
+
+
+
+
+
+<span *ngIf="rowBaseForms">
+
+
+<div *ngFor="let currentRowBaseForms of this.rowBaseForms" class="row">
+
+
+    <span *ngIf="currentRowBaseForms">
+        <div *ngFor="let currentBaseForm of currentRowBaseForms.baseForms" [class]="currentBaseForm.classDisplay + ''">
+            <app-floating-input  [parentForm]="parentForm" [baseForm]="currentBaseForm"></app-floating-input>
+    </div>
+
+    </span>
+
+    <!--<app-floating-input  *ngFor="let baseForm of currentRowBaseForms.baseForms"  [parentForm]="parentForm" [baseForm]="baseForm"></app-floating-input>-->
+
+</div>
+
+
+
+</span>
+

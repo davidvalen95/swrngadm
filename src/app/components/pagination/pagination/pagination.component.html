@@ -1,0 +1,18 @@
+<nav aria-label="Page navigation" *ngIf="paginationLogic">
+  <ul class="pagination">
+    <li (click)="getList(paginationLogic.current -1 )" *ngIf="paginationLogic.current > 1">
+      <a href="javascript:void(0)"  aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <li [ngClass]="{active:i == paginationLogic.current}" *ngFor="let i of paginationLogic.range" (click)="getList(i)"><a href="javascript:void(0)">{{i}}</a></li>
+
+
+    <li *ngIf="paginationLogic.current != paginationLogic.end && paginationLogic.end != 0"  (click)="getList(paginationLogic.current + 1 )">
+      <a href="javascript:void(0)"  aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

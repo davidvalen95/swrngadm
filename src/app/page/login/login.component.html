@@ -1,0 +1,29 @@
+
+<div class="card-content ">
+  <form #parentForm="ngForm" (submit)="this.login(parentForm)">
+
+    <div class="row  ">
+      <div class="col-xs-12 col-md-offset-4  col-md-4 ">
+        <div class="form-group form-black is-empty">
+          <label class="control-label">Username</label>
+          <input ngModel="" type="text" class="form-control" name="email">
+        </div>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-xs-12 col-md-offset-4 col-md-4 ">
+        <div class="form-group form-black  is-empty">
+          <label class="control-label">Password</label>
+          <input ngModel=""  type="password" name="password" class="form-control" >
+        </div>
+
+        <button type="submit" class="btn btn-danger pull-right">Login</button>
+
+      </div>
+    </div>
+
+
+    <div class="clearfix"></div>
+  </form>
+</div>

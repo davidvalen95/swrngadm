@@ -1,0 +1,46 @@
+
+
+
+p{
+  display:inline-block;;
+  margin-bottom: 12px;
+}
+
+.keyValueContainer{
+  padding: 16px;
+  background: #f0f0f0;
+}
+.key{
+  width: 120px;
+  position:relative;
+  white-space: normal;
+  text-overflow: clip;
+  overflow: hidden;
+
+  &:after{
+    content: ":";
+    position: absolute;
+    right: -10px;
+  }
+
+  vertical-align: middle;
+}
+
+.value{
+  white-space: normal;
+  text-overflow: clip;
+  overflow: hidden;
+  margin-left: 24px;
+  vertical-align: middle;
+
+}
+
+
+
+.sectionTitle{
+  padding: 12px;
+  background: #ddd;
+  color:black;
+  //margin-bottom: 12px;
+
+}

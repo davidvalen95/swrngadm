@@ -1,0 +1,119 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+
+
+        <div class="row" style="">
+            <div class=" col-xs-12 col-md-6" >
+                <div class="card">
+                    <div (click)="this.filter.isOpen = !this.filter.isOpen" class="card-header" data-background-color="blue">
+                        <h4 class="title">Search for {{title}}</h4>
+                        <p class="category">Click here to toggle the menu</p>
+                    </div>
+                    <div *ngIf="this.filter.isOpen" class="card-content animationExpandBottom">
+
+                        <form #parentFilterForm = "ngForm">
+                            <app-row-floating-input [parentForm]="parentFilterForm" [rowBaseForms]="this.filterForm"></app-row-floating-input>
+                            <button type="button" class="btn btn-info pull-right" (click)="apiExecuteGetTop()">Search</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="row" >
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title" style="display: inline-block">Room Data</h4>
+                        <!--<button data-target="#formModal " data-toggle="modal"  (click)="presentModal(selectData)"  class="pull-right btn btn-primary"><i class="material-icons">playlist_add</i> Add new for {{selectData.key}}</button>-->
+                        <!--<p class="category">Here is a subtitle for this table</p>-->
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-danger">
+                            <tr>
+                                <th>Id</th>
+                                <th>Function</th>
+                                <th>Apply Date</th>
+                                <th>Building Name</th>
+                                <th>Room Name</th>
+                                <th>Address</th>
+
+                                <th>Status</th>
+                                <th>Image</th>
+                                <!--<th>Action</th>-->
+                            </tr>
+                            </thead>
+                            <tbody *ngIf="top">
+                            <tr appMarkClicked="" *ngFor="let data of top.data.rooms.data" data-target="#detailModal " data-toggle="modal" (click)="presentModal(data)" >
+                                <td>{{data.id}}</td>
+                                <td>{{helperService.getReadableDate(data.created_at)}}</td>
+                                <td>{{data.buildingName}}</td>
+                                <td>{{data.roomFunction}}</td>
+                                <td>{{data.roomName}}</td>
+                                <td>{{data.address}}</td>
+                                <td [innerHtml]="data.status | keepAsHtml"></td>
+                                <td><img style="max-height: 100px;width: auto;" class="" alt="Main Photo"  [src]="apiService.baseUrl + data.mainPhoto.path + data.mainPhoto.nameSm"/></td>
+
+                                <!--<td>-->
+                                    <!--<button   type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">-->
+                                        <!--<i class="material-icons">edit</i>-->
+                                    <!--</button>-->
+                                    <!--<button  (click)="apiExecuteDelete(selectData, currentColumn.id)" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">-->
+                                        <!--<i class="material-icons">delete</i>-->
+                                    <!--</button>-->
+                                <!--</td>-->
+
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <app-pagination [onClick]="onClickPagination" *ngIf="top" [filter]="filter" [pagination]="top.data.rooms"></app-pagination>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id="detailModal" class="modal fade" role="dialog" *ngIf="this.modalData">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4  class="modal-title" >Approval For Id <b>{{this.modalData.id}}</b> </h4>
+            </div>
+            <form #parentForm="ngForm">
+                <div class="modal-body">
+                    <!--<app-row-floating-input [parentForm]="parentForm" [rowBaseForms]="rowBaseForms"></app-row-floating-input>-->
+                    <app-key-value  [containerKeyValues]="readableModalData"></app-key-value>
+
+                    <app-row-floating-input [parentForm]="parentForm" [rowBaseForms]="approvalForm"></app-row-floating-input>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger closeModal" data-dismiss="modal">Close</button>
+                    <button (click)="formApprovalSubmit(parentForm)"  type="button" class="btn btn-success " >Submit</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,10 @@
+.glyphicon {
+  font-size: 18px;
+
+  &:hover{
+    color: tomato;
+    cursor: pointer;
+  }
+
+  padding: 0px 12px;
+}

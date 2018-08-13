@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/**
+    Toast nya g tembus pandang
+ */
+.toast-container, .toast{
+    opacity: 1 !important;
+    *{
+        opacity: 1 !important;;
+    }
+}
+
+
+.animationExpandBottom{
+
+    max-height: 0;
+    overflow: hidden;
+    animation-name: expandBottomKeyFrame;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    //height: auto;
+
+
+}
+
+@keyframes expandBottomKeyFrame {
+    0%{max-height: 0}
+    100%{
+        max-height: 1200px;
+    }
+}
+
+
+
+.searchBox{
+    padding: 12px; border: 1px solid grey;
+    .col{
+        margin-bottom: 12px;
+    }
+
+}
+
+
+.transitionAny{
+    transition: all 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+
+//# buat label
+.control-label{
+    color: #222 !important;
+    margin-top: 0 !important;
+}
+.form-group{
+    margin-top: 0px;
+}
+
+
+
+//# modal waktu mobile nutupin jadi ga bisa diklik layarnya
+.modal-backdrop{
+    //position: static !important;
+    z-index: -1 !important;
+    &.in{
+        opacity: 0 !important;
+    }
+}
+
+.card form [class*="col-"]{
+    padding: 15px !important;;
+}

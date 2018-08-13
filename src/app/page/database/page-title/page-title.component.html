@@ -1,0 +1,102 @@
+
+<div class="main-content">
+  <div class="container-fluid">
+
+
+
+    <div class="row" style="">
+      <div class=" col-xs-12 col-md-6" >
+        <div class="card">
+          <div (click)="this.filter.isOpen = !this.filter.isOpen" class="card-header" data-background-color="blue">
+            <h4 class="title">Search for {{title |ucWord}}</h4>
+            <p class="category">Click here to toggle the menu</p>
+          </div>
+          <div *ngIf="this.filter.isOpen" class="card-content animationExpandBottom">
+
+            <form #parentFilterForm = "ngForm">
+              <app-row-floating-input [parentForm]="parentFilterForm" [rowBaseForms]="this.filterForm"></app-row-floating-input>
+              <button type="button" class="btn btn-info pull-right" (click)="apiExecuteGetTop()">Search</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+    <div class="row" >
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title" style="display: inline-block">Room Data</h4>
+            <!--<button data-target="#formModal " data-toggle="modal"  (click)="presentModal(selectData)"  class="pull-right btn btn-primary"><i class="material-icons">playlist_add</i> Add new for {{selectData.key}}</button>-->
+            <!--<p class="category">Here is a subtitle for this table</p>-->
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table">
+              <thead class="text-danger">
+              <tr>
+                <th>No</th>
+                <th>Page</th>
+                <th>Title</th>
+                <th>Description</th>
+                <!--<th>Action</th>-->
+              </tr>
+              </thead>
+              <tbody *ngIf="top">
+              <tr appMarkClicked="" *ngFor="let data of top.data.page; let i = index" data-target="#modal" data-toggle="modal" (click)="presentModal(data)" >
+                <td>{{i + 1}}</td>
+                <td>{{data.page | ucWord}}</td>
+                <td>{{data.title}}</td>
+                <td>{{data.description}}</td>
+
+
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <!--<app-pagination [onClick]="onClickPagination" *ngIf="top" [filter]="filter" [pagination]="top.data.rooms"></app-pagination>-->
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div id="modal" class="modal fade" role="dialog" *ngIf="this.modalData">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4  class="modal-title" [innerHtml]="modalData.title | keepAsHtml"></h4>
+      </div>
+      <form #parentForm="ngForm">
+        <div class="modal-body">
+          <!--<app-row-floating-input [parentForm]="parentForm" [rowBaseForms]="rowBaseForms"></app-row-floating-input>-->
+          <!--<app-key-value  [containerKeyValues]="readableModalData"></app-key-value>-->
+          <app-row-floating-input [parentForm]="parentForm" [rowBaseForms]="baseForm"></app-row-floating-input>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger closeModal" data-dismiss="modal">Close</button>
+          <button (click)="formSubmit(parentForm)"  type="button" class="btn btn-success " >Submit</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>

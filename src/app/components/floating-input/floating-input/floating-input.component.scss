@@ -1,0 +1,73 @@
+
+
+
+
+
+
+
+textarea{
+  //background: #EAF2F8 !important;
+  //padding: 8px !important;
+  margin: 0px !important;
+  height:100px;
+  width: 100% !important;
+}
+
+
+
+.required{
+  &::after{
+    content: '*';
+    color: tomato;
+  }
+}
+
+[hidden] { display: none !important;}
+
+
+//# biar g ada jarak sama error,
+.form-control{
+  margin-bottom: 0px !important;
+  background-image: none; //ilangin garis bawah
+  border: 1px #ccc solid;
+  padding: 12px;
+  min-height: 44px !important; //biar ga nutupin value
+
+}
+
+
+.readOnlyInfo{
+
+  display: block;
+  p{
+    //padding-left:12px;
+    vertical-align: top;
+    text-align: left!important;
+    margin: 0;
+  }
+  .label{
+    color: black;
+    display: inline-block;
+    width: 35%;
+
+    position:relative;
+    &::after{
+      content: ':';
+      position:absolute;
+      right:3px;
+      top:0;
+    }
+
+  }
+
+  .value{
+    color:black;
+    display: inline-block;
+    width: 63%;
+    padding-left: 12px;
+  }
+}
+
+
+
+

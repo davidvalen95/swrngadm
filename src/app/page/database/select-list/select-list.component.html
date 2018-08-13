@@ -1,0 +1,81 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+
+    <div class="row" *ngFor="let selectData of this.listData">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title" style="display: inline-block">{{selectData.key}}</h4>
+            <button data-target="#formModal " data-toggle="modal"  (click)="openFormModal(selectData)"  class="pull-right btn btn-primary"><i class="material-icons">playlist_add</i> Add new for {{selectData.key}}</button>
+            <!--<p class="category">Here is a subtitle for this table</p>-->
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table">
+              <thead class="text-danger">
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Action</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let currentColumn of selectData.value">
+                <td>{{currentColumn.id}}</td>
+                <td>{{currentColumn.name  }}</td>
+                <td>
+                  <button   type="button" rel="tooltip" title="Edit Task" class="btn btn-simple btn-xs">
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button  (click)="apiExecuteDelete(selectData, currentColumn.id)" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </td>
+
+
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="formModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 *ngIf="this.modalData" class="modal-title">Add new selection for {{this.modalData.key || ""}}</h4>
+      </div>
+      <form #parentForm="ngForm">
+        <div class="modal-body">
+
+          <app-row-floating-input [parentForm]="parentForm" [rowBaseForms]="rowBaseForms"></app-row-floating-input>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger closeModal" data-dismiss="modal">Close</button>
+          <button (click)="formSubmit(parentForm)"  type="button" class="btn btn-success " >Submit</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>

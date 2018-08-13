@@ -1,0 +1,163 @@
+
+<div class="main-content">
+  <div class="container-fluid">
+
+
+
+    <!--<div class="row" style="">-->
+      <!--<div class=" col-xs-12 col-md-6" >-->
+        <!--<div class="card">-->
+          <!--<div (click)="this.filter.isOpen = !this.filter.isOpen" class="card-header" data-background-color="blue">-->
+            <!--<h4 class="title">Search for {{title |ucWord}}</h4>-->
+            <!--<p class="category">Click here to toggle the menu</p>-->
+          <!--</div>-->
+          <!--<div *ngIf="this.filter.isOpen" class="card-content animationExpandBottom">-->
+
+            <!--<form #parentFilterForm = "ngForm">-->
+              <!--<app-row-floating-input [parentForm]="parentFilterForm" [rowBaseForms]="this.filterForm"></app-row-floating-input>-->
+              <!--<button type="button" class="btn btn-info pull-right" (click)="apiExecuteGetTop()">Search</button>-->
+            <!--</form>-->
+
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+
+    <!--</div>-->
+
+
+
+
+    <div class="row" >
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title" style="display: inline-block">Paid Confirmation Data</h4>
+            <!--<button data-target="#formModal " data-toggle="modal"  (click)="presentModal(selectData)"  class="pull-right btn btn-primary"><i class="material-icons">playlist_add</i> Add new for {{selectData.key}}</button>-->
+            <!--<p class="category">Here is a subtitle for this table</p>-->
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table">
+              <thead class="text-danger">
+              <tr>
+                <th>No</th>
+                <th>City</th>
+                <th>Event</th>
+                <th>Deskripsi iklan</th>
+                <th>Duration</th>
+                <th>Price to be paid</th>
+
+                <!--<th>Action</th>-->
+              </tr>
+              </thead>
+              <tbody *ngIf="top">
+              <tr appMarkClicked="" *ngFor="let data of top.data.advertisementDescription; let i = index" data-target="#modal" data-toggle="modal" (click)="presentModal(data)" >
+                <td>{{i + 1}}</td>
+                <td>{{data.get_advertisement.targetCity}}</td>
+                <td>{{data.description}}</td>
+                <td>{{data.get_advertisement.description}}</td>
+                <td>{{data.duration}}</td>
+                <td>{{data.price}}</td>
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <!--<app-pagination [onClick]="onClickPagination" *ngIf="top" [filter]="filter" [pagination]="top.data.rooms"></app-pagination>-->
+      </div>
+
+
+    </div>
+
+
+
+
+    <div class="row" >
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title" style="display: inline-block">Active Advertisement</h4>
+            <!--<button data-target="#formModal " data-toggle="modal"  (click)="presentModal(selectData)"  class="pull-right btn btn-primary"><i class="material-icons">playlist_add</i> Add new for {{selectData.key}}</button>-->
+            <!--<p class="category">Here is a subtitle for this table</p>-->
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table">
+              <thead class="text-danger">
+              <tr>
+                <th>No</th>
+                <th>City</th>
+                <th>Deskripsi iklan</th>
+                <th>Link</th>
+                <th>Valid until</th>
+                <th>User Info</th>
+                <th>Advert Picture</th>
+
+
+                <!--<th>Action</th>-->
+              </tr>
+              </thead>
+              <tbody *ngIf="top">
+              <tr appMarkClicked="" *ngFor="let data of top.data.activeAdvertisement; let i = index" >
+                <td>{{i + 1}}</td>
+                <td>{{data.targetCity | ucWord}}</td>
+                <td>{{data.description}}</td>
+                <td><a [href]="'//'+data.link" target="_blank">{{data.link}}</a></td>
+                <td>{{helperService.getReadableDate(data.validUntil)}}</td>
+                <td>
+                  {{data.get_user.email}}<br/>
+                  {{data.get_user.telephone}}
+                </td>
+                <td>
+                  <a data-fancybox="gallery" [href]="apiService.baseUrl+data.get_photo.path+data.get_photo.nameLg"><img style="vertical-align: middle;max-width: 60px;" class="" [src]="apiService.baseUrl+data.get_photo.path+data.get_photo.nameSm"/>
+                  </a>
+                </td>
+              </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+        <!--<app-pagination [onClick]="onClickPagination" *ngIf="top" [filter]="filter" [pagination]="top.data.rooms"></app-pagination>-->
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
+<div id="modal" class="modal fade" role="dialog" *ngIf="this.modalData">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4  class="modal-title" [innerHtml]="modalData.title | keepAsHtml"></h4>
+      </div>
+      <form #parentForm="ngForm">
+        <div class="modal-body">
+          <!--<app-row-floating-input [parentForm]="parentForm" [rowBaseForms]="rowBaseForms"></app-row-floating-input>-->
+          <app-key-value  [containerKeyValues]="readableModalData"></app-key-value>
+          <app-row-floating-input [parentForm]="parentForm" [rowBaseForms]="baseForm"></app-row-floating-input>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger closeModal" data-dismiss="modal">Close</button>
+          <button (click)="formSubmit(parentForm)"  type="button" class="btn btn-success " >Submit</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-bottom: 16px;" class="row" *ngFor="let currentContainerKeyValue of containerKeyValues">
+  <div  [class]="currentContainerKeyValue.classDisplay || 'col-xs-12'">
+
+    <div *ngIf="currentContainerKeyValue">
+      <div class="sectionTitle" (click)="currentContainerKeyValue.isOpen = !currentContainerKeyValue.isOpen">
+        <h4>{{currentContainerKeyValue.title | ucWord}}</h4>
+      </div>
+
+      <div *ngIf="currentContainerKeyValue.isOpen " class="keyValueContainer animationExpandBottom clearfix" >
+        <div  *ngFor="let keyValue of currentContainerKeyValue.keyValues" style="min-height: 100%;">
+          <p class="key" [innerHtml]="keyValue.key | keepAsHtml"></p>
+          <p class="value" [innerHtml]="keyValue.value | keepAsHtml"></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
