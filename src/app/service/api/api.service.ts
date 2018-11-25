@@ -12,13 +12,13 @@ export class ApiService {
 
 
     // public static BASE_API_URL:string = "http://192.168.1.9:8111/sewaRuang/api/";
-    public static BASE_API_URL: string = 'http://localhost/sewaRuang/api/';
-    public static BASE_URL: string = 'http://localhost/sewaRuang/';
+    // public static BASE_API_URL: string = 'http://localhost/sewaRuang/api/';
+    // public static BASE_URL: string = 'http://localhost/sewaRuang/';
     //
     //
     //
-    // public static BASE_API_URL: string = 'https://sewaruang.id/test-site3/api/';
-    // public static BASE_URL: string = 'https://sewaruang.id/test-site3/';
+    public static BASE_API_URL: string = 'https://sewaruang.id/test-site3/api/';
+    public static BASE_URL: string = 'https://sewaruang.id/test-site3/';
 
     public baseApiUrl = ApiService.BASE_API_URL;
     public baseUrl = ApiService.BASE_URL;
